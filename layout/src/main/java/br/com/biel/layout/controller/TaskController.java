@@ -51,7 +51,7 @@ public class TaskController {
                 taskService.cadastrarTarefa(task);
                 System.out.println("Cadastrado com sucesso!");
                 model.addAttribute("sucess", "Cadastrado com sucesso");
-                return "redirect:/list";
+                return "create";
             } else {
                 model.addAttribute("error", "Os campos não podem ser nulos.");
                 return "create";
