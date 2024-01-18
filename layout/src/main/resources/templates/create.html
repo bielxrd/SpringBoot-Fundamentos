@@ -9,6 +9,20 @@
     <title>Cadastro de tarefa</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/create">Cadastrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/list">Listagem</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <form method="post" action="/create" th:object="${task}">
     <input type="hidden" th:value="${task.id}" name="id"/>
     <div class="mb-3">
