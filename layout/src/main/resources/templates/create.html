@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Cadastro de tarefa</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/create">Cadastrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/list">Listagem</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<form method="post" action="/create" th:object="${task}">
+    <input type="hidden" th:value="${task.id}" name="id"/>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nome da tarefa</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" name="name" th:value="${task.name}">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Data da tarefa</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" name="date" th:value="${{task.date}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div th:if="${error}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+    <div th:if="${sucess}">
+        <p th:text="${sucess}" style="color: green;"></p>
+    </div>
+</form>
+</body>
+</html>
