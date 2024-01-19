@@ -1,4 +1,4 @@
-package br.com.gabrieldias.main;
+package br.com.gabrieldias.main.controller;
 
 
 import org.springframework.stereotype.Controller;
