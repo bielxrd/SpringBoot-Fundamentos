@@ -2,6 +2,8 @@ package br.com.gabrieldias.controller;
 
 
 import br.com.gabrieldias.model.Objeto;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +16,8 @@ import java.util.Map;
 public class PrimeiraController {
 
 
-    @GetMapping("/primeiroMetodo/{id}") // Utilizar PathParams quando eu quiser passar um parametro na url, ideal para operacoes do tipo GET
+    @GetMapping("/primeiroMetodo/{id}")
+    // Utilizar PathParams quando eu quiser passar um parametro na url, ideal para operacoes do tipo GET
     // Toda vez que eu acessar a url /primeiraController/primeiroMetodo vai cair dentro deste metodo, o {id} e um parametro que eu posso passar na url
     public String primeiroMetodo(@PathVariable Integer id) { // Essa anotacao diz que o parametro id vai ser o parametro que eu passei na url
         return "O parametro é " + id;
@@ -53,6 +56,21 @@ public class PrimeiraController {
     public String metodoComListHeader(@RequestHeader Map<String, String> headers) { // Utilizar quando eu quiser extrair todos os valores do cabeçalho da requisição, útil quando você precisa extrair informações específicas dos cabeçalhos da solicitação, e você usa a anotação @RequestHeader para indicar qual cabeçalho você está interessado.
         return "O parametro com metodoComHeader é " + headers.entrySet();
     }
+
+
+    @GetMapping("/metodoResponseEntity/{id}")
+    public ResponseEntity<Object> metodoResponseEntity(@PathVariable Long id) { // ResponseEntity é um tipo de retorno de método em Spring que adiciona mais flexibilidade ao seu controlador. Ele permite que você controle totalmente a resposta HTTP enviada de volta ao cliente. Isso inclui o status HTTP, cabeçalhos e corpo da resposta.
+        // A classe ResponseEntity no Spring é usada para representar toda a resposta HTTP: código de status, cabeçalhos e corpo da resposta. Ela oferece mais controle sobre a resposta enviada pelo servidor em comparação com simplesmente retornar um objeto do controlador, especialmente em casos onde você precisa personalizar detalhes da resposta.
+        var usuario = new Usuario("Gabriel", "123456");
+
+        if (id > 5) {
+            return ResponseEntity.status(HttpStatus.OK).body(usuario);
+        }
+
+        return ResponseEntity.badRequest().body("Numero menor que 5");
+
+    }
+
 
     record Usuario(String username, String password) { //
     }
