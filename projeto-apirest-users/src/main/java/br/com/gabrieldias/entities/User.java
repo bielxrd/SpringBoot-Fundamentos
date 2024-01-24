@@ -30,6 +30,6 @@ public class User {
     private String password;
 
     @Column(name = "phone")
-    private Long phone;
+    private String phone;
 
 }
