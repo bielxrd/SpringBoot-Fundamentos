@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teste API - REST</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+<body>
+
+    <div class="menu-principal">
+        <a href="index.html">Home</a>
+        <a href="index.html">Sobre</a>
+        <a href="index.html">Contato</a>
+        <a href="index.html">Login</a>   
+    </div>
+
+
+
+    <div class="container-principal">
+        <p>Seja bem vindo ao meu site para testar minha API REST!</p>
+        <br>
+        <p id="text">Cadastre-se</p>
+        <div class="formulario">
+            <form>
+                <p>Username</p>
+                <input type="text" name="username" required>
+                <br>
+                <p>Email</p>
+                <input type="email" name="email" required>
+                <br>
+                <p>Senha</p>
+                <input type="password" name="senha" required>
+                <br>
+                <p>Telefone</p>
+                <input type="text" class="form-control" id="phone" name="telefone" placeholder="(99) 9999-9999" pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" title="Número de telefone precisa ser no formato (99) 9999-9999" required="required" />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
