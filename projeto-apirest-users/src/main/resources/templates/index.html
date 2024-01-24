@@ -24,17 +24,53 @@
         <div class="formulario">
             <form>
                 <p>Username</p>
-                <input type="text" name="username" required>
+                <input type="text" id="username" name="username" required>
                 <br>
                 <p>Email</p>
-                <input type="email" name="email" required>
+                <input type="email" id="email" name="email" required>
                 <br>
                 <p>Senha</p>
-                <input type="password" name="senha" required>
+                <input type="password" id="password" name="password" required>
                 <br>
                 <p>Telefone</p>
                 <input type="text" class="form-control" id="phone" name="telefone" placeholder="(99) 9999-9999" pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" title="Número de telefone precisa ser no formato (99) 9999-9999" required="required" />
+                <br>
+                <button onclick="cadastrarUsuario()">Cadastrar</button>
+                <script>function cadastrarUsuario() {
+                    const username = document.getElementById("username").value
+                    const email = document.getElementById("email").value
+                    const password = document.getElementById("password").value
+                    const phone = document.getElementById("phone").value
+
+                    const user = {
+                        username: username,
+                        email: email,
+                        password: password,
+                        phone: phone
+                    };
+
+                    fetch('http://localhost:8080/users/cadastro', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    }).then((response) => {
+                        response.json().then((user) => {
+                            window.alert('Usuário cadastrado com sucesso!');
+                            window.alert('ID do usuário: ' + user.id);
+                            console.log("Nome do usuário: " + user.username);
+                        })
+                            .catch(error => {
+                                window.alert('Erro ao cadastrar usuário. Consulte o console para mais detalhes.');
+                            })
+                    })
+                }
+                </script>
             </form>
+            <p style="color: #FFFFFF" id="result-username"></p>
+            <p id="result-email"></p>
+            <p id="result-phone"></p>
         </div>
     </div>
 </body>
